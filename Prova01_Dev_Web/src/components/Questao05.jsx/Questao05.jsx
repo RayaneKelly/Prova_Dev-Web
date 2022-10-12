@@ -109,8 +109,6 @@ const Questao05 = () => {
                     {listaPaises()}
                 </tbody>
             </table>
-
-
         </div>
     )
 }
