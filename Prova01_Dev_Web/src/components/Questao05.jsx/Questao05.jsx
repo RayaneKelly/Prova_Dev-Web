@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 const Questao05 = () => {
 
     const [pop, setPop] = useState(0)
-    const [popMenos, setPopMenos]= useState(0)
+    const [popMenos, setPopMenos] = useState(0)
     const [nameMais, setNameMais] = useState('')
     const [nameMenos, setNameMenos] = useState('')
     const [pais, setPais] = useState('africa')
@@ -14,7 +14,7 @@ const Questao05 = () => {
 
     useEffect(
         () => {
-            axios.get('https://restcountries.com/v2/region/'+pais+'?fields=name,population')
+            axios.get('https://restcountries.com/v2/region/' + pais + '?fields=name,population')
                 .then(
                     (response) => {
                         setDadosPais(response.data)
@@ -43,30 +43,16 @@ const Questao05 = () => {
         )
 
     }
+    const mudarAmerica = () => {
+        setPais('americas')
+    }
+
+    const mudarAsia = () => {
+        setPais('asia')
+    }
+
 
     const calculoPopulosos = () => {
-       
-
-        if (pais === 'asia') {
-    
-            dadosPais.map(
-                (element, index) => {
-                    if (popMenos> element.population) {
-                        setPopMenos(element.population)
-                        console.log('pops menos do valor maior',popMenos)
-        
-                            setNameMenos(element.name)
-                            console.log('aaaa', pop, 'nome', element.name)
-                        // }
-                       
-                    }
-
-                }
-            )
-            // }
-            return (<p> O País menos populoso é: {nameMenos}</p>) 
-        }
-        
 
         if (pais === 'africa' || pais === 'americas') {
 
@@ -83,22 +69,19 @@ const Questao05 = () => {
             // }
             return (<p> O País mais populoso é: {nameMais}</p>)
         }
-      
 
-    }
+        if (pais === 'asia') {
 
-    const calculoMenosPopulosos = () => {
-        // if (pais === 'asia') {
-            if (pais === 'africa' || pais === 'americas') {
             dadosPais.map(
                 (element, index) => {
-                    if (pop < element.population) {
+                    if (popMenos > element.population) {
                         setPopMenos(element.population)
+                        console.log('pops menos do valor maior', popMenos)
 
-                       
-                            console.log('aaaa', popMenos, 'nome', element.name)
+                        setNameMenos(element.name)
+                        console.log('aaaa', pop, 'nome', element.name)
                         // }
-                       
+
                     }
 
                 }
@@ -107,34 +90,44 @@ const Questao05 = () => {
             return (<p> O País menos populoso é: {nameMenos}</p>)
         }
 
-    
-        }
-        
 
 
 
-    const mudarAmerica = () => {
-        setPais('americas')
+
     }
 
-    const mudarAsia =() =>{
-        setPais('asia')
-    }
+    // const calculoMenosPopulosos = () => {
+    //     // if (pais === 'asia') {
+    //     if (pais === 'africa' || pais === 'americas') {
+    //         dadosPais.map(
+    //             (element, index) => {
+    //                 if (pop < element.population) {
+    //                     setPopMenos(element.population)
+    //                     console.log('aaaa', popMenos, 'nome', element.name)
+    //                     // }
+    //                 }
+    //             }
+    //         )
+    //         // }
+    //         return (<p> O País menos populoso é: {nameMenos}</p>)
+    //     }
+    // }
 
+  
 
 
     return (
         <div>
-            <div style={{marginTop:30}}>
-                <button onClick={mudarAmerica} style={{margin:20}}>Americas</button>
+            <div style={{ marginTop: 30 }}>
+                <button onClick={mudarAmerica} style={{ margin: 20 }}>Americas</button>
                 <button onClick={mudarAsia}>Asia</button>
                 {
                     calculoPopulosos()
                     // calculoMenosPopulosos()
-            
-                    
+
+
                 }
-               
+
             </div>
 
             <table className='table'>
