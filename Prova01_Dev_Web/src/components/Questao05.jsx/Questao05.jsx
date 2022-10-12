@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 const Questao05 = () => {
 
     const [pop, setPop] = useState(0)
-    const [popMenos, setPopMenos] = useState(0)
+    const [popMenos, setPopMenos] = useState(2000000000)
     const [nameMais, setNameMais] = useState('')
     const [nameMenos, setNameMenos] = useState('')
     const [pais, setPais] = useState('africa')
@@ -14,7 +14,7 @@ const Questao05 = () => {
 
     useEffect(
         () => {
-            axios.get('https://restcountries.com/v2/region/' + pais + '?fields=name,population')
+            axios.get('https://restcountries.com/v2/region/'+pais+'?fields=name,population')
                 .then(
                     (response) => {
                         setDadosPais(response.data)
@@ -51,10 +51,9 @@ const Questao05 = () => {
         setPais('asia')
     }
 
-
     const calculoPopulosos = () => {
 
-        if (pais === 'africa' || pais === 'americas') {
+        if ((pais === 'africa') || (pais === 'americas')) {
 
             dadosPais.map(
                 (element, index) => {
@@ -70,52 +69,25 @@ const Questao05 = () => {
             return (<p> O País mais populoso é: {nameMais}</p>)
         }
 
-        if (pais === 'asia') {
+        else if (pais === 'asia') {
 
             dadosPais.map(
                 (element, index) => {
                     if (popMenos > element.population) {
                         setPopMenos(element.population)
-                        console.log('pops menos do valor maior', popMenos)
-
                         setNameMenos(element.name)
-                        console.log('aaaa', pop, 'nome', element.name)
-                        // }
+                        // console.log('nome', pop, 'nome', element.name)
+                    
 
                     }
 
                 }
             )
             // }
+
             return (<p> O País menos populoso é: {nameMenos}</p>)
         }
-
-
-
-
-
     }
-
-    // const calculoMenosPopulosos = () => {
-    //     // if (pais === 'asia') {
-    //     if (pais === 'africa' || pais === 'americas') {
-    //         dadosPais.map(
-    //             (element, index) => {
-    //                 if (pop < element.population) {
-    //                     setPopMenos(element.population)
-    //                     console.log('aaaa', popMenos, 'nome', element.name)
-    //                     // }
-    //                 }
-    //             }
-    //         )
-    //         // }
-    //         return (<p> O País menos populoso é: {nameMenos}</p>)
-    //     }
-    // }
-
-  
-
-
     return (
         <div>
             <div style={{ marginTop: 30 }}>
@@ -123,11 +95,7 @@ const Questao05 = () => {
                 <button onClick={mudarAsia}>Asia</button>
                 {
                     calculoPopulosos()
-                    // calculoMenosPopulosos()
-
-
                 }
-
             </div>
 
             <table className='table'>
@@ -140,10 +108,6 @@ const Questao05 = () => {
                 <tbody>
                     {listaPaises()}
                 </tbody>
-
-
-
-
             </table>
 
 
