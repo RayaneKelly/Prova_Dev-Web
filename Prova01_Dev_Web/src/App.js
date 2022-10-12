@@ -1,10 +1,7 @@
 import './App.css';
 
 
-import World from './components/Atividade02/World';
-import Arena from './components/Atividade02/Arena';
-import Hero from './components/Atividade02/Hero';
-import Enemy from './components/Atividade02/Enemy';
+
 import Questao01 from './components/Questao01/Questao01';
 import Questao02 from './components/Questao02/Questao02';
 import Questao03 from './components/Questao3/Questao03';
